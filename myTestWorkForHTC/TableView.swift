@@ -17,4 +17,19 @@ class TableView : UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "editUser", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "editUser"){
+            let indexPath = tableView.indexPathForSelectedRow!
+            let studentDetail = segue.destination as? DetailVC
+            let selectedStudent: StudentModel!
+            selectedStudent = studentList[indexPath.row]
+            studentDetail!.selectedStudent = selectedStudent
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
 }
