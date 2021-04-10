@@ -4,17 +4,22 @@ import CoreData
 
 class DetailVC: UIViewController {
 
-    @IBOutlet weak var newUserMarkTF: UITextField!
-    @IBOutlet weak var newUserNameTF: UITextField!
-  
+    @IBOutlet weak var firstNameTF: UITextField!
+    @IBOutlet weak var lastNameTF: UITextField!
+    @IBOutlet weak var userMarkTF: UITextField!
+    
+    
+    
+    
     var selectedStudent: StudentModel? = nil
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if(selectedStudent != nil){
-            newUserMarkTF.text = selectedStudent?.userMark
-            newUserNameTF.text = selectedStudent?.userName
+            userMarkTF.text = selectedStudent?.userMark
+            firstNameTF.text = selectedStudent?.firstName
+            lastNameTF.text = selectedStudent?.lastName
         }
     }
 
@@ -25,8 +30,9 @@ class DetailVC: UIViewController {
             let entity = NSEntityDescription.entity(forEntityName: "StudentModel", in: context)
             let newStudent = StudentModel(entity: entity!, insertInto: context)
             newStudent.id = studentList.count as NSNumber
-            newStudent.userName = newUserNameTF.text
-            newStudent.userMark = newUserMarkTF.text
+            newStudent.firstName = firstNameTF.text
+            newStudent.userMark = userMarkTF.text
+            newStudent.lastName = lastNameTF.text
             do{
                try  context.save()
                 studentList.append(newStudent)
@@ -43,8 +49,9 @@ class DetailVC: UIViewController {
                 for result in results {
                     let student = result as! StudentModel
                     if(student == selectedStudent) {
-                        student.userName = newUserNameTF.text
-                        student.userMark = newUserMarkTF.text
+                        student.firstName = firstNameTF.text
+                        student.lastName = lastNameTF.text
+                        student.userMark = userMarkTF.text
                         try context.save()
                         navigationController?.popViewController(animated: true)
                     }

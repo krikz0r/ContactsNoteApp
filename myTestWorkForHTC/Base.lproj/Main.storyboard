@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View-->
+        <!--Список учеников-->
         <scene sceneID="Eiz-iB-i8W">
             <objects>
                 <tableViewController id="v6z-pI-ZfM" customClass="TableView" customModule="myTestWorkForHTC" customModuleProvider="target" sceneMemberID="viewController">
@@ -26,20 +26,36 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OEy-2e-zcP">
-                                            <rect key="frame" x="20" y="11" width="355" height="34"/>
+                                            <rect key="frame" x="0.0" y="11" width="414" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="73i-E4-diF">
-                                            <rect key="frame" x="20" y="51" width="355" height="34"/>
+                                            <rect key="frame" x="0.0" y="40.5" width="414" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idY-0Y-eD8">
+                                            <rect key="frame" x="159" y="14" width="125" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DEN-WA-025">
+                                            <rect key="frame" x="7" y="14" width="125" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="firstNameLabel" destination="DEN-WA-025" id="Qng-Iu-vBA"/>
+                                    <outlet property="lastNameLabel" destination="idY-0Y-eD8" id="VU3-IU-XDi"/>
                                     <outlet property="oldUserMarkTF" destination="73i-E4-diF" id="nCa-d7-MHO"/>
                                     <outlet property="oldUserNameTF" destination="OEy-2e-zcP" id="LJ7-UC-Z1H"/>
                                 </connections>
@@ -50,7 +66,8 @@
                             <outlet property="delegate" destination="v6z-pI-ZfM" id="KaE-AV-kly"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="6mm-fs-uVP">
+                    <navigationItem key="navigationItem" title="Список учеников" id="6mm-fs-uVP">
+                        <barButtonItem key="backBarButtonItem" title="  " id="aIB-KT-lMx"/>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="buw-F3-YOL">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" identifier="addUser" id="jDd-D2-ubW"/>
@@ -72,6 +89,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Igy-jD-gXH">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="v6z-pI-ZfM" kind="relationship" relationship="rootViewController" id="aSV-Aa-W7C"/>
@@ -81,7 +101,7 @@
             </objects>
             <point key="canvasLocation" x="-1140" y="-312"/>
         </scene>
-        <!--DetailVC-->
+        <!--Добавление/Редактирование -->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="DetailVC" customModule="myTestWorkForHTC" customModuleProvider="target" sceneMemberID="viewController">
@@ -89,34 +109,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cYx-af-K3k">
-                                <rect key="frame" x="27" y="151" width="360" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cYx-af-K3k">
+                                <rect key="frame" x="27" y="151" width="360" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="AccentColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aBc-MI-asc">
-                                <rect key="frame" x="27" y="234" width="360" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Фамилия" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aBc-MI-asc">
+                                <rect key="frame" x="27" y="234" width="360" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="AccentColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Средний балл" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oa8-T5-LV0">
+                                <rect key="frame" x="27" y="327" width="360" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ipR-9r-Sa5">
+                    <navigationItem key="navigationItem" title="Добавление/Редактирование " id="ipR-9r-Sa5">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="U0c-JO-0cW">
+                            <color key="tintColor" name="AccentColor"/>
                             <connections>
                                 <action selector="saveButton:" destination="BYZ-38-t0r" id="JjD-nk-V6J"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="newUserMarkTF" destination="aBc-MI-asc" id="DaN-Nn-E9H"/>
-                        <outlet property="newUserNameTF" destination="cYx-af-K3k" id="OqU-RM-1mP"/>
+                        <outlet property="firstNameTF" destination="cYx-af-K3k" id="MBv-11-5wN"/>
+                        <outlet property="lastNameTF" destination="aBc-MI-asc" id="1yN-If-RNX"/>
+                        <outlet property="userMarkTF" destination="oa8-T5-LV0" id="JrV-na-HBE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

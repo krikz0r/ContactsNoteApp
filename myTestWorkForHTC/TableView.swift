@@ -7,7 +7,8 @@ class TableView : UITableViewController {
         let studentCell = tableView.dequeueReusableCell(withIdentifier: "studentCellId", for: indexPath) as! StudentCell
         let thisStudent: StudentModel!
         thisStudent = studentList[indexPath.row]
-        studentCell.oldUserNameTF.text = thisStudent.userName
+        studentCell.firstNameLabel.text = thisStudent.firstName
+        studentCell.lastNameLabel.text = thisStudent.lastName
         studentCell.oldUserMarkTF.text = thisStudent.userMark
         return studentCell
     }

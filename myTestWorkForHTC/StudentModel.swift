@@ -1,8 +1,10 @@
 import CoreData
 
 @objc(StudentModel)
-class StudentModel :NSManagedObject {
+class StudentModel :NSManagedObject,Encodable {
     @NSManaged var id: NSNumber!
     @NSManaged var userMark: String!
-    @NSManaged var userName: String!
+    @NSManaged var firstName: String!
+    @NSManaged var lastName: String!
 }
+
