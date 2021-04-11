@@ -1,4 +1,6 @@
 import UIKit
+import CoreData
+
 var studentList = [StudentModel]()
 class TableView : UITableViewController {
     
@@ -36,8 +38,39 @@ class TableView : UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
+            let requestDel = NSFetchRequest<NSFetchRequestResult>(entityName: "StudentModel")
+            requestDel.returnsObjectsAsFaults = false
+            do {
+                let arrUsrObj = try context.fetch(requestDel)
+                let objectUpdate = arrUsrObj as! [NSManagedObject]
+                context.delete(objectUpdate[indexPath.row])
+            } catch {
+                
+            }
+            do {
+                try context.save()
+                
+            } catch {
+                
+            }
             studentList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = StudentModel.fetchRequest() as! NSFetchRequest<StudentModel>
+        do {
+            studentList = try context.fetch(fetchRequest)
+        } catch {
+            
+        }
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
 }
